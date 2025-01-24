@@ -39,6 +39,13 @@ function Player (name, symbol){
     };
 }
 
+/*function choose_cell (){
+    var cell_input  = window.prompt("enter a valid cell in the gameboeard matrix");
+    console.log(cell_input);
+    var row = (''+cell_input)[0];
+    var column = (''+cell_input)[1];
+    return row, column;
+}*/
 
 function check_board_game (playerSymbol) {
     fixed_row_inc_column(playerSymbol);
