@@ -30,6 +30,14 @@ function choose_cell (){
     return [row, column];
 }
 
+
+
+
+/////////////////connect the front with js
+
+//var input = document.getElementById('input'); 
+
+
 const selected_cases = [];
 
 
@@ -53,13 +61,12 @@ function play (Symbol) {
     }  
 }
 
-
-
 /* the winner needs to satisfy one of the three conditions one complete column or row or diagonal of same symbols
     it will be either having a fixed row and incrementing number in columns -> eg : [0,1] [0,2] [0,3]
     or an incrementing row and a fixed number in columns
     or a fixed diagonal of the same symbols
 */
+
 function check_board_game (playerSymbol) {
 
     let bool = false;
@@ -74,7 +81,6 @@ function check_board_game (playerSymbol) {
     }
     return bool;
 }   
-
 
 function fixed_row_inc_column (playerSymbol){
     let bool = false;
@@ -122,18 +128,22 @@ function game(){
         bool1 = check_board_game(player1.symbol);
         console.log("bool1 "+ bool1);
         if (bool1 == true) {
+            alert("player 1 wins ");
             break;
         }
         play(player2.symbol);
         bool2 = check_board_game(player2.symbol);
         console.log("bool2 "+ bool2);
         if (bool2 == true) {
+            alert("player 2 wins ");
             break;
         }
     }
 }
 
 game();
+
+
 
 
 
