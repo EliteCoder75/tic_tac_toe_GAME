@@ -6,7 +6,7 @@ const GameBoard =
     () => [...Array(3)].map(_=>Array(3).fill("e"));  
 
 var board = GameBoard();    
-    
+
 
 // print formated array
 function format_array (m) {
@@ -24,6 +24,7 @@ function Player (name, symbol){
     } 
 }
 
+// function that allows to select a cell
 function choose_cell (){
     const cell_input = window.prompt("enter a valid cell in the gameboeard matrix");
     console.log(cell_input);
@@ -34,6 +35,8 @@ function choose_cell (){
 
 const selected_cases = [];
 
+
+//function that allow the user to play one shot
 function play (Symbol) { 
     let n = 0; 
     let row_column = choose_cell();
@@ -53,13 +56,19 @@ function play (Symbol) {
     }  
 }
 
-//board[row_column[0]][row_column[1]] == "X" || board[row_column[0]][row_column[1]] == "O"
 
+
+/* the winner needs to satisfy one of the three conditions one complete column or row or diagonal of same symbols
+    it will be either having a fixed row and incrementing number in columns -> eg : [0,1] [0,2] [0,3]
+    or an incrementing row and a fixed number in columns
+    or a fixed diagonal of the same symbols
+*/
 function check_board_game (playerSymbol) {
     fixed_row_inc_column(playerSymbol);
     inc_row_fixed_column(playerSymbol);
     inc_row_inc_column(playerSymbol);
 }
+
 
 function fixed_row_inc_column (playerSymbol){
     let bool = false;
