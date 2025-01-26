@@ -1,4 +1,3 @@
-
 const game = {
     status: "base"
 }
@@ -7,7 +6,7 @@ const GameBoard =
     () => [...Array(3)].map(_=>Array(3).fill("e"));  
 
 var board = GameBoard();    
-
+    
 
 // print formated array
 function format_array (m) {
@@ -16,20 +15,6 @@ function format_array (m) {
 
 format_array(board);    
 
-//m[2][4] = 8;  // last row, last column
-
-
-/*const cell = (function choose_cell (){
-    const cell_input  = window.prompt("enter a valid cell in the gameboeard matrix");
-    //console.log(cell_input);
-    
-    row = (''+cell_input)[0];
-    column = (''+cell_input)[1];
-    const array = [row, column];
-    return {array};
-})();*/
-
-
 
 function Player (name, symbol){
     this.name = name;
@@ -37,18 +22,6 @@ function Player (name, symbol){
     this.now = function (){
         console.log("hello")
     } 
-    /*this.play = function () {
-        let row_column = choose_cell();
-
-        var row = row_column[0];
-        var column = row_column[1];
-
-        if ( board[row][column] != "e"){
-            console.log ("choose another cell");
-        }
-        board[row][column] = this.symbol;
-        format_array(board);
-    };*/
 }
 
 function choose_cell (){
@@ -92,15 +65,16 @@ function fixed_row_inc_column (playerSymbol){
     let bool = false;
     if (board[0][0] == playerSymbol && board[0][1] == playerSymbol && board[0][2] == playerSymbol ){
         bool = true;
+        console.log(playerSymbol +" wins");
         return bool;
-        console.log("win");}   
+        }   
     if (board[1][0] == playerSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}  
     if (board[2][0] == playerSymbol && board[2][1] == playerSymbol && board[2][2] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}  
 }
 
@@ -108,15 +82,15 @@ function inc_row_fixed_column (playerSymbol){
     let bool = false;
     if (board[0][0] == playerSymbol && board[1][0] == playerSymbol && board[2][0] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}   
     if (board[0][1] == playerSymbol && board[1][1] == playerSymbol && board[2][1] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}  
     if (board[0][2] == playerSymbol && board[1][2] == playerSymbol && board[2][2] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}  
 }
 
@@ -124,7 +98,7 @@ function inc_row_inc_column (playerSymbol){
     let bool = false;
     if (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol ){
         bool = true;
-        console.log("win");
+        console.log(playerSymbol +" wins");
         return bool;}    
 }
 
