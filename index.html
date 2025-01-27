@@ -4,62 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="javascript.js"></script>
-
     <title>Document</title>
+    
 </head>
 <body>
+    
     <header class="header">TIC TAC TOE</header>
+
     <div class="grid-container">
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist>
-        <input id="input" list="options" name="myBrowser" />
-        <datalist id="options">
-            <option value="X">
-            <option value="O">
-        </datalist> 
-        <p id="values"></p>
+        <select id="select" class="inp" name="00"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+
+        <select id="select" class="inp" name="01"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="02"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="10"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="11"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="12"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="20"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="21"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <select id="select" class="inp" name="22"  onChange="update()">
+            <option value=""></option>
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
     </div>
     
-
+    <label>
+        Choose an ice cream flavor:
+        <select class="ice-cream" name="ice-cream">
+          <option value="">Select One …</option>
+          <option value="chocolate">Chocolate</option>
+          <option value="sardine">Sardine</option>
+          <option value="vanilla">Vanilla</option>
+        </select>
+    </label>
+      
+    <div class="result"></div>
     
+    
+    
+    
+    
+    <script src="script.js"></script>
 </body>
 </html>
