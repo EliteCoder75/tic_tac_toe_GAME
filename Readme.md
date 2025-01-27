@@ -12,3 +12,9 @@ remaining task //
 * apply the backend logic on the front
 * add player name and symbol on the front 
 * add begin round button to unblock the grid (think later about it)
+
+remaining tasks //
+
+* add more style (alternate between the players)
+* add button to begin the game
+* display the winner afterwards 
