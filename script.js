@@ -19,15 +19,6 @@ function Player (name, symbol){
 }
 
 
-const selectElement = document.querySelector(".ice-cream");
-const result = document.querySelector(".result");
-
-selectElement.addEventListener("change", (event) => {
-  result.textContent = `You like ${event.target.value}`;
-  console.log(`You like ${event.target.value}`);
-});
-
-
 
 const inp = document.querySelectorAll("select.inp");
 
@@ -35,12 +26,10 @@ if (inp) {
     
     inp.forEach((bt) => {
         bt.addEventListener("change", (event) => {
-            //const value = event.target.value
-            //const name = event.target.name
-            //symbol of the cell 
-            console.log(event.target.value);
-            console.log(event.target.name);
-
+            bt.setAttribute("disabled", "disabled");
+            const symbol = event.target.value;
+            const coor = event.target.name;
+            //play(symbol, coor);
         });
     });  
     
@@ -52,32 +41,6 @@ if (inp) {
 /////////////////connect the front with js
 
 
-
-
-/*const input1 = document.querySelector("#input1");
-
-input1.addEventListener('change', logContent);
-
-function logContent(event) {
-  const value = event.target.value
-  const name = event.target.name
-  // Do what you have to do with value
-  console.log(value)
-  console.log(name)
-}*/
-
-
-
-/*const selectElement = document.getElementById("id");
-const result = document.querySelector(".result");
-
-if (!selectElement) {
-    console.log ("not found");
-  }
-
-selectElement.addEventListener("change", (event) => {
-  console.log(event.target.value);
-});/*/
 
 // function that allows to select a cell
 /*function choose_cell (){
@@ -116,9 +79,8 @@ const selected_cases = [];
 function play (Symbol, coord) { 
     let n = 0; 
    // let row_column = choose_cell();
-    let el = (coord[0]+""+coord[1])
-    console.log(el);
-    while ( selected_cases.includes(el)){
+    console.log(coord);
+    while ( selected_cases.includes(coord)){
         console.log ("choose another cell");
         row_column = choose_cell();
         el = (row_column[0]+""+row_column[1]);
