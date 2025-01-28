@@ -83,10 +83,41 @@ function inc_row_inc_column (playerSymbol){
 const player1 = new Player("player1", "X");
 const player2 = new Player("player2", "O");
 
+
+
 const inp = document.querySelectorAll("select.inp");
-function choose_and_select (){
+const start = document.getElementById("start");
+
+
+function desable_all_cells (){
     if (inp) {
-        
+        inp.forEach((bt) => {
+            bt.value == "";
+            bt.setAttribute("disabled", "disabled");
+        });
+
+}
+}
+
+function enable_all_cells (){
+    if (inp) {
+        inp.forEach((bt) => {
+            bt.removeAttribute("disabled");
+        });
+
+}
+}
+
+//by default all the select cells are deactivated until we start the game
+desable_all_cells();
+//make start_game button
+start.addEventListener("click", choose_and_select);
+
+
+function choose_and_select(){
+    enable_all_cells();
+    console.log("started");
+    if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
                 bt.setAttribute("disabled", "disabled");
@@ -99,9 +130,11 @@ function choose_and_select (){
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
                         alert("player 1 with "+ symbol+ " wins ");
+                        desable_all_cells();
                     }
                     else {
                         alert("player 2 with "+ symbol+ " wins ");
+                        desable_all_cells();
                     }
                 }
             });
@@ -110,7 +143,9 @@ function choose_and_select (){
     }  
 }
 
-choose_and_select();
+
+
+
 
 const selectElement1 = document.getElementById("choice1");
 const playerName1 = document.getElementById("playerName1");
