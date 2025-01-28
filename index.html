@@ -5,76 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
-    
 </head>
 <body>
     
     <header class="header">TIC TAC TOE</header>
+    <div class="main_container">
+        <div class="player1_choice">
+            <label for="name">Player 1  Name:</label>
+            <input type="text" id="playerName1" name="name" required minlength="4" maxlength="8" size="10" />
+            <label for="name">Player 1  Symbol:</label>
+            <select id="choice1" >
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <button class="confirm_crident1" >Confirm</button>
+            <div class="result1"></div>
+        </div>
+        <div class="grid_container">
+            <select id="select" class="inp" name="00">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
 
-    <div class="grid-container">
-        <select id="select" class="inp" name="00">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
+            <select id="select" class="inp" name="01">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="02">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="10">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="11">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="12">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="20">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="21">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <select id="select" class="inp" name="22">
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+        </div>
+        <div class="player2_choice">
+            <label for="name">Player 2  Name:</label>
+            <input type="text" id="playerName2" name="name" required minlength="4" maxlength="8" size="10" />
+            <label for="name">Player 2  Symbol:</label>
+            <select id="choice2" >
+                <option value=""></option>
+                <option value="X">X</option>
+                <option value="O">O</option>
+            </select>
+            <button class="confirm_crident2" >Confirm</button>
+            <div class="result2"></div>
+        </div>
 
-        <select id="select" class="inp" name="01">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="02">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="10">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="11">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="12">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="20">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="21">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-        <select id="select" class="inp" name="22">
-            <option value=""></option>
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
-    </div>
-    
-    <label>
-        Choose an ice cream flavor:
-        <select class="ice-cream" name="ice-cream">
-          <option value="">Select One …</option>
-          <option value="chocolate">Chocolate</option>
-          <option value="sardine">Sardine</option>
-          <option value="vanilla">Vanilla</option>
-        </select>
-    </label>
-      
-    <div class="result"></div>
-    
-    
-    
-    
+    </div>   
     
     <script src="script.js"></script>
 </body>
