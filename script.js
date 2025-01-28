@@ -87,6 +87,8 @@ const player2 = new Player("player2", "O");
 
 const inp = document.querySelectorAll("select.inp");
 const start = document.getElementById("start");
+const restart = document.getElementById("restart");
+
 
 
 function desable_all_cells (){
@@ -108,15 +110,25 @@ function enable_all_cells (){
 }
 }
 
+function clear_all_cells (){
+    if (inp) {
+        inp.forEach((bt) => {
+            bt.selectedIndex = -1;
+        });
+}}
+
+
+
+//make start_game button
+start.addEventListener("click", choose_and_select());
+//restart.addEventListener("click", replay_game());
+
 //by default all the select cells are deactivated until we start the game
 desable_all_cells();
-//make start_game button
-start.addEventListener("click", choose_and_select);
-
 
 function choose_and_select(){
     enable_all_cells();
-    console.log("started");
+    
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
@@ -130,11 +142,15 @@ function choose_and_select(){
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
                         alert("player 1 with "+ symbol+ " wins ");
+                        clear_all_cells();
                         desable_all_cells();
+                        
                     }
                     else {
                         alert("player 2 with "+ symbol+ " wins ");
+                        clear_all_cells();
                         desable_all_cells();
+                        
                     }
                 }
             });
@@ -143,8 +159,43 @@ function choose_and_select(){
     }  
 }
 
+/*
+function replay_game(){
 
-
+    clear_all_cells();
+    enable_all_cells();
+    console.log();
+    
+    if (inp) {
+        inp.forEach((bt) => {
+            bt.addEventListener("change", (event) => {
+                bt.setAttribute("disabled", "disabled");
+                const symbol = event.target.value;
+                const coor = event.target.name;
+                bool = false;
+                board[coor[0]][coor[1]] = symbol;
+                bool = check_board_game(symbol);
+                format_array(board);
+                if (bool == true ) {
+                    if ( player1.symbol == symbol){
+                        alert("player 1 with "+ symbol+ " wins ");
+                        clear_all_cells();
+                        desable_all_cells();
+                        
+                    }
+                    else {
+                        alert("player 2 with "+ symbol+ " wins ");
+                        clear_all_cells();
+                        desable_all_cells();
+                        
+                    }
+                }
+            });
+        });  
+        
+    }  
+}
+*/
 
 
 const selectElement1 = document.getElementById("choice1");
