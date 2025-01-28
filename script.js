@@ -12,20 +12,16 @@ function format_array (m) {
 
 format_array(board);    
 
-
 function Player (name, symbol){
     this.name = name;
     this.symbol = symbol;
 }
 
-
-
 function play (Symbol, coord) { 
     console.log(coord);
     
     board[row_column[0]][row_column[1]] = Symbol;
-    format_array(board);
-           
+    format_array(board);         
 }
 
 /* the winner needs to satisfy one of the three conditions one complete column or row or diagonal of same symbols
@@ -83,6 +79,7 @@ function inc_row_inc_column (playerSymbol){
         return bool;}    
 }
 
+
 const player1 = new Player("player1", "X");
 const player2 = new Player("player2", "O");
 
@@ -99,8 +96,13 @@ function choose_and_select (){
                 board[coor[0]][coor[1]] = symbol;
                 bool = check_board_game(symbol);
                 format_array(board);
-                if (bool == true) {
-                    alert(symbol+ " wins ");
+                if (bool == true ) {
+                    if ( player1.symbol == symbol){
+                        alert("player 1 with "+ symbol+ " wins ");
+                    }
+                    else {
+                        alert("player 2 with "+ symbol+ " wins ");
+                    }
                 }
             });
         });  
@@ -109,6 +111,34 @@ function choose_and_select (){
 }
 
 choose_and_select();
+
+const selectElement1 = document.getElementById("choice1");
+const playerName1 = document.getElementById("playerName1");
+const confirm_crident1 = document.querySelector(".confirm_crident1");
+
+const result1 = document.querySelector(".result1");
+
+confirm_crident1.addEventListener("click", (event) => {
+  console.log(selectElement1.value);
+  console.log(playerName1.value);
+  result1.textContent = `${playerName1.value} you're choice is ${selectElement1.value}`;
+});
+
+const selectElement2 = document.getElementById("choice2");
+const playerName2 = document.getElementById("playerName2");
+const confirm_crident2 = document.querySelector(".confirm_crident2");
+
+const result2 = document.querySelector(".result2");
+
+confirm_crident2.addEventListener("click", (event) => {
+  console.log(selectElement2.value);
+  console.log(playerName2.value);
+  result2.textContent = `${playerName2.value} you're choice is ${selectElement2.value}`;
+});
+
+
+
+
 
 
 
