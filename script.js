@@ -83,25 +83,8 @@ function inc_row_inc_column (playerSymbol){
 const player1 = new Player("player1", "X");
 const player2 = new Player("player2", "O");
 
-
-
 const inp = document.querySelectorAll("select.inp");
-const start = document.getElementById("start");
-const restart = document.getElementById("restart");
-
-
-
-function desable_all_cells (){
-    if (inp) {
-        inp.forEach((bt) => {
-            bt.value == "";
-            bt.setAttribute("disabled", "disabled");
-        });
-
-}
-}
-
-function enable_all_cells (){
+function choose_and_select (){
     if (inp) {
         inp.forEach((bt) => {
             bt.removeAttribute("disabled");
