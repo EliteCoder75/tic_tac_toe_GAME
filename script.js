@@ -26,13 +26,11 @@ function play (Symbol, coord) {
 /* the winner needs to satisfy one of the three conditions one complete column or row or diagonal of same symbols
     it will be either having a fixed row and incrementing number in columns -> eg : [0,1] [0,2] [0,3]
     or an incrementing row and a fixed number in columns
-    or a fixed diagonal of the same symbols
-*/
+    or a fixed diagonal of the same symbols */
 
 function check_board_game (playerSymbol) {
 
     let bool = false;
-
     let check1 = fixed_row_inc_column(playerSymbol);
     let check2 = inc_row_fixed_column(playerSymbol);
     let check3 = inc_row_inc_column(playerSymbol);
@@ -85,6 +83,7 @@ const player2 = new Player("player2", "O");
 const inp = document.querySelectorAll("select.inp");
 const start = document.getElementById("start");
 const restart = document.getElementById("restart");
+const grid_container = document.querySelector(".grid_container");
 
 
 //make start_game button
@@ -118,11 +117,9 @@ function clear_all_cells (){
 }}
 
 //restart.addEventListener("click", replay_game());
-
 //by default all the select cells are deactivated until we start the game
 
-const switch_user = [];
-
+const switch_user = ["e"];
 
 disable_all_cells ();
 
@@ -138,28 +135,35 @@ function choose_and_select(){
                 bt.setAttribute("disabled", "disabled");
                 const symbol = event.target.value;
                 const coor = event.target.name;
-                let x = switch_user.slice(-1).pop();
-                if (x === symbol){
-                    console.log("change your symbol");
+                let lastSymbol = switch_user[switch_user.length - 1];
+
+                if (symbol === lastSymbol) {
+                    console.log("It's not your turn");
+                    bt.removeAttribute("disabled");
                     bt.selectedIndex = -1;
+                    document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                    return;
                 }
+                
                 bool = false;
                 board[coor[0]][coor[1]] = symbol;
                 bool = check_board_game(symbol);
                 //format_array(board);
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
-                        alert("player 1 with "+ symbol+ " wins ");
+                        alert(player1.name + "with "+ symbol+ " wins ");
+                        document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
                         clear_all_cells();
                         disable_all_cells();   
                     }
                     else {
-                        alert("player 2 with "+ symbol+ " wins ");
+                        alert(player2.name + " with "+ symbol+ " wins ");
+                        document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
                         clear_all_cells();
-                        disable_all_cells();
-                        
+                        disable_all_cells(); 
                     }
                 }
+            
                 switch_user.push(symbol);
 
                 console.log(switch_user);
@@ -191,14 +195,13 @@ function restart_game(){
                     if ( player1.symbol == symbol){
                         alert("player 1 with "+ symbol+ " wins ");
                         clear_all_cells();
-                        desable_all_cells();
+                        disable_all_cells();
                         
                     }
                     else {
                         alert("player 2 with "+ symbol+ " wins ");
                         clear_all_cells();
-                        desable_all_cells();
-                        
+                        disable_all_cells();                        
                     }
                 }
             });
