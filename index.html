@@ -13,14 +13,16 @@
         <div class="player1_choice">
             <label for="name">Player 1  Name:</label>
             <input type="text" id="playerName1" name="name" required minlength="4" maxlength="8" size="10" />
+            <div class="name1_result"></div>
             <label for="name">Player 1  Symbol:</label>
             <select id="choice1" >
                 <option value="" disabled selected></option>
                 <option value="X">X</option>
                 <option value="O">O</option>
             </select>
+            <div class="symbol1_result"></div>
             <button class="confirm_crident1" >Confirm</button>
-            <div class="result1"></div>
+            
         </div>
         <div class="grid_container">
             <select id="select" class="inp" name="00">
@@ -73,12 +75,14 @@
         <div class="player2_choice">
             <label for="name">Player 2  Name:</label>
             <input type="text" id="playerName2" name="name" required minlength="4" maxlength="8" size="10" />
+            <div class="name2_result"></div>
             <label for="name">Player 2  Symbol:</label>
             <select id="choice2" >
                 <option value="" disabled selected></option>
                 <option value="X">X</option>
                 <option value="O">O</option>
             </select>
+            <div class="symbol2_result"></div>
             <button class="confirm_crident2" >Confirm</button>
             <div class="result2"></div>
         </div>
@@ -89,7 +93,7 @@
         <button id="start" value="start">Start Game</button>
         <button id="restart" value="restart">restart Game</button>    </div>   
     <div id="turn"></div>
-    <div id="result"></div>
+    <div id="result"></div>  
     <script src="script.js"></script>
 </body>
 </html>

@@ -77,23 +77,95 @@ function inc_row_inc_column (playerSymbol){
 }
 
 
-const player1 = new Player("player1", "X");
-const player2 = new Player("player2", "O");
-
 const inp = document.querySelectorAll("select.inp");
 const start = document.getElementById("start");
 const restart = document.getElementById("restart");
 const grid_container = document.querySelector(".grid_container");
 
 
+function check_same_name_or_symbol (s1, s2, n1, n2){
+    if (s1 == s2 || n1 == n2) {
+        return true;
+    }
+}
+
+////// selection of the players name and choice
+const selectElement1 = document.getElementById("choice1");
+const playerName1 = document.getElementById("playerName1");
+const confirm_crident1 = document.querySelector(".confirm_crident1");
+const selectElement2 = document.getElementById("choice2");
+const playerName2 = document.getElementById("playerName2");
+const confirm_crident2 = document.querySelector(".confirm_crident2");
+
+const name1_result = document.querySelector(".name1_result");
+const symbol1_result = document.querySelector(".symbol1_result");
+
+const name2_result = document.querySelector(".name2_result");
+const symbol2_result = document.querySelector(".symbol2_result");
+
+
+let check1 = false;
+confirm_crident1.addEventListener("click", () => {
+    let check = true;
+    console.log(selectElement2);
+    if (playerName1.value == ""){
+        name1_result.style.color = "red";
+        name1_result.textContent = "name must be filled out" ;
+        //alert ("name must be filled out");
+    } else if (selectElement1.value == "") {
+        symbol1_result.style.color = "red";
+        symbol1_result.textContent = "symbol cannot be empty" ;
+    }
+    else if (selectElement1.value == selectElement2.value) {
+        console.log("same symbol choosed");
+    }
+    else if (playerName1.value == playerName2.value){
+        console.log("same name");
+    }
+    else {
+        name1_result.textContent = "";
+        symbol1_result.textContent = "";
+        console.log("alles gut");
+        check1 = true;
+    }
+});
+
+
+let check2 = false;
+
+confirm_crident2.addEventListener("click", () => {
+    
+    //console.log(selectElement2);
+    if (playerName2.value == ""){
+        name2_result.style.color = "red";
+        name2_result.textContent = "name must be filled out" ;
+        //alert ("name must be filled out");
+    } else if (selectElement2.value == "") {
+        symbol2_result.style.color = "red";
+        symbol2_result.textContent = "symbol cannot be empty" ;
+    }
+    else if (selectElement1.value == selectElement2.value) {
+        console.log("same symbol choosed");
+    }
+    else if (playerName1.value == playerName2.value){
+        console.log("same name");
+    }
+    else {
+        name1_result.textContent = "";
+        symbol1_result.textContent = "";
+        console.log("alles gut");
+        check2 = true;
+    }
+});
+
+const player1 = new Player("bach","X");
+const player2 = new Player("bac","O");
+
 //make start_game button
 start.addEventListener("click", choose_and_select);
 console.log(start); 
 
-
 restart.addEventListener("click", restart_game);
-
-
 
 function enable_all_cells (){
     if (inp) {
@@ -125,54 +197,56 @@ disable_all_cells ();
 
 function choose_and_select(){
 
-    console.log("i'm here");
-    enable_all_cells();
-    console.log("also here");
-    
-    if (inp) {
-        inp.forEach((bt) => {
-            bt.addEventListener("change", (event) => {
-                grid_container.style.backgroundColor = 'dodgerblue';
-                bt.setAttribute("disabled", "disabled");
-                const symbol = event.target.value;
-                const coor = event.target.name;
-                let lastSymbol = switch_user[switch_user.length - 1];
-
-                if (symbol === lastSymbol) {
-                    console.log("It's not your turn");
-                    bt.removeAttribute("disabled");
-                    bt.selectedIndex = -1;
-                    document.getElementById("turn").textContent = "It's not your turn" + symbol; 
-                    grid_container.style.backgroundColor = 'red';
-                    return;
-                }
-                
-                bool = false;
-                board[coor[0]][coor[1]] = symbol;
-                bool = check_board_game(symbol);
-                //format_array(board);
-                if (bool == true ) {
-                    if ( player1.symbol == symbol){
-                        alert(player1.name + "with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
-                        clear_all_cells();
-                        disable_all_cells();   
-                    }
-                    else {
-                        alert(player2.name + " with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
-                        clear_all_cells();
-                        disable_all_cells(); 
-                    }
-                }
-            
-                switch_user.push(symbol);
-
-                console.log(switch_user);
-            });
-        });  
+    if (check1 == true && check2 == true){
+        console.log("i'm here");
+        enable_all_cells();
+        console.log("also here");
         
-    }  
+        if (inp) {
+            inp.forEach((bt) => {
+                bt.addEventListener("change", (event) => {
+                    grid_container.style.backgroundColor = 'dodgerblue';
+                    bt.setAttribute("disabled", "disabled");
+                    const symbol = event.target.value;
+                    const coor = event.target.name;
+                    let lastSymbol = switch_user[switch_user.length - 1];
+
+                    if (symbol === lastSymbol) {
+                        console.log("It's not your turn");
+                        bt.removeAttribute("disabled");
+                        bt.selectedIndex = -1;
+                        document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                        grid_container.style.backgroundColor = 'red';
+                        return;
+                    }
+                    
+                    bool = false;
+                    board[coor[0]][coor[1]] = symbol;
+                    bool = check_board_game(symbol);
+                    //format_array(board);
+                    if (bool == true ) {
+                        if ( player1.symbol == symbol){
+                            alert(player1.name + "with "+ symbol+ " wins ");
+                            document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
+                            clear_all_cells();
+                            disable_all_cells();   
+                        }
+                        else {
+                            alert(player2.name + " with "+ symbol+ " wins ");
+                            document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
+                            clear_all_cells();
+                            disable_all_cells(); 
+                        }
+                    }
+                
+                    switch_user.push(symbol);
+
+                    console.log(switch_user);
+                });
+            });  
+            
+        }  }
+    else { alert ("put valid names and different symbols");}    
 }
 
 
@@ -229,32 +303,48 @@ function restart_game(){
 }
 
 
+
+
+
+
+
+
+
+/*code that I may need 
 const selectElement1 = document.getElementById("choice1");
 const playerName1 = document.getElementById("playerName1");
 const confirm_crident1 = document.querySelector(".confirm_crident1");
 
 const result1 = document.querySelector(".result1");
 
-confirm_crident1.addEventListener("click", (event) => {
-  console.log(selectElement1.value);
-  console.log(playerName1.value);
-  result1.textContent = `${playerName1.value} you're choice is ${selectElement1.value}`;
+confirm_crident1.addEventListener("click", () => {
+    if ( Name1.value == Name2.value || symbolchoice1.value == symbolchoice2.value ){
+        console.log("change Name or Symbol of one of the two players");    
+    }
+    console.log(Name2.value );
+    console.log(symbolchoice2.value);
+    var player1 = new Player(Name1, symbolchoice1);
+    
+    result1.textContent = `${player1.Name1} you're choice is ${player1.symbolchoice1}`;
 });
 
-const selectElement2 = document.getElementById("choice2");
+/*const selectElement2 = document.getElementById("choice2");
 const playerName2 = document.getElementById("playerName2");
 const confirm_crident2 = document.querySelector(".confirm_crident2");
 
 const result2 = document.querySelector(".result2");
 
 confirm_crident2.addEventListener("click", (event) => {
-  console.log(selectElement2.value);
-  console.log(playerName2.value);
-  result2.textContent = `${playerName2.value} you're choice is ${selectElement2.value}`;
-});
 
-
-
+    if ( Name1.value == Name2.value || symbolchoice1.value == symbolchoice2.value ){
+        console.log("change Name or Symbol of one of the two players");    
+    }
+    console.log(Name2.value );
+    console.log(symbolchoice2.value);
+    var player2 = new Player(Name2, symbolchoice2);
+    
+    result1.textContent = `${player2.Name2} you're choice is ${player2.symbolchoice2}`;
+});*/
 
 
 
