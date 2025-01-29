@@ -132,6 +132,7 @@ function choose_and_select(){
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
+                grid_container.style.backgroundColor = 'dodgerblue';
                 bt.setAttribute("disabled", "disabled");
                 const symbol = event.target.value;
                 const coor = event.target.name;
@@ -142,6 +143,7 @@ function choose_and_select(){
                     bt.removeAttribute("disabled");
                     bt.selectedIndex = -1;
                     document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                    grid_container.style.backgroundColor = 'red';
                     return;
                 }
                 
@@ -178,36 +180,52 @@ function restart_game(){
 
     clear_all_cells();
     enable_all_cells();
-    console.log();
+    console.log("also here");
     
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
+                grid_container.style.backgroundColor = 'dodgerblue';
                 bt.setAttribute("disabled", "disabled");
-                
                 const symbol = event.target.value;
                 const coor = event.target.name;
+                let lastSymbol = switch_user[switch_user.length - 1];
+
+                if (symbol === lastSymbol) {
+                    console.log("It's not your turn");
+                    bt.removeAttribute("disabled");
+                    bt.selectedIndex = -1;
+                    document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                    grid_container.style.backgroundColor = 'red';
+                    return;
+                }
+                
                 bool = false;
                 board[coor[0]][coor[1]] = symbol;
                 bool = check_board_game(symbol);
-                format_array(board);
+                //format_array(board);
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
-                        alert("player 1 with "+ symbol+ " wins ");
+                        alert(player1.name + "with "+ symbol+ " wins ");
+                        document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
                         clear_all_cells();
-                        disable_all_cells();
-                        
+                        disable_all_cells();   
                     }
                     else {
-                        alert("player 2 with "+ symbol+ " wins ");
+                        alert(player2.name + " with "+ symbol+ " wins ");
+                        document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
                         clear_all_cells();
-                        disable_all_cells();                        
+                        disable_all_cells(); 
                     }
                 }
+            
+                switch_user.push(symbol);
+
+                console.log(switch_user);
             });
         });  
         
-    }  
+    }   
 }
 
 
