@@ -102,6 +102,8 @@ const symbol1_result = document.querySelector(".symbol1_result");
 
 const name2_result = document.querySelector(".name2_result");
 const symbol2_result = document.querySelector(".symbol2_result");
+const message1 = document.querySelector(".message1");
+const message2 = document.querySelector(".message2");
 
 
 let check1 = false;
@@ -127,6 +129,7 @@ confirm_crident1.addEventListener("click", () => {
         symbol1_result.textContent = "";
         console.log("alles gut");
         check1 = true;
+        message1.textContent = "";
     }
 });
 
@@ -145,21 +148,22 @@ confirm_crident2.addEventListener("click", () => {
         symbol2_result.textContent = "symbol cannot be empty" ;
     }
     else if (selectElement1.value == selectElement2.value) {
-        console.log("same symbol choosed");
+        alert("same symbol choosed");
     }
     else if (playerName1.value == playerName2.value){
-        console.log("same name");
+        alert("same name");
     }
     else {
         name1_result.textContent = "";
         symbol1_result.textContent = "";
         console.log("alles gut");
         check2 = true;
+        message2.textContent = "";
     }
 });
 
-const player1 = new Player("bach","X");
-const player2 = new Player("bac","O");
+const player1 = new Player(playerName1.value, selectElement1.value);
+const player2 = new Player(playerName2.value, selectElement2.value);
 
 //make start_game button
 start.addEventListener("click", choose_and_select);
@@ -198,6 +202,7 @@ disable_all_cells ();
 function choose_and_select(){
 
     if (check1 == true && check2 == true){
+        
         console.log("i'm here");
         enable_all_cells();
         console.log("also here");
@@ -240,7 +245,6 @@ function choose_and_select(){
                     }
                 
                     switch_user.push(symbol);
-
                     console.log(switch_user);
                 });
             });  
@@ -251,11 +255,10 @@ function choose_and_select(){
 
 
 function restart_game(){
-
+    if (check1 == true && check2 == true){
+    switch_user = ["e"];
     clear_all_cells();
-    enable_all_cells();
-    console.log("also here");
-    
+    enable_all_cells();    
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
@@ -299,7 +302,7 @@ function restart_game(){
             });
         });  
         
-    }   
+    }  }
 }
 
 
