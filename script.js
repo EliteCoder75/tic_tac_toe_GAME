@@ -162,8 +162,7 @@ confirm_crident2.addEventListener("click", () => {
     }
 });
 
-const player1 = new Player(playerName1.value, selectElement1.value);
-const player2 = new Player(playerName2.value, selectElement2.value);
+
 
 //make start_game button
 start.addEventListener("click", choose_and_select);
@@ -192,14 +191,19 @@ function clear_all_cells (){
         });
 }}
 
-//restart.addEventListener("click", replay_game());
-//by default all the select cells are deactivated until we start the game
 
 const switch_user = ["e"];
-
+// by default all the cells are disabled 
 disable_all_cells ();
 
-function choose_and_select(){
+function choose_and_select()
+{   
+    const player1 = new Player(playerName1.value, selectElement1.value);
+    const player2 = new Player(playerName2.value, selectElement2.value);
+
+    console.log("hhahahahahahahjjjjjjiiiii");
+    console.log(player1.name);
+    console.log(player1.symbol);
 
     if (check1 == true && check2 == true){
         
@@ -228,10 +232,9 @@ function choose_and_select(){
                     bool = false;
                     board[coor[0]][coor[1]] = symbol;
                     bool = check_board_game(symbol);
-                    //format_array(board);
                     if (bool == true ) {
                         if ( player1.symbol == symbol){
-                            alert(player1.name + "with "+ symbol+ " wins ");
+                            alert(player1.name + " with "+ symbol+ " wins ");
                             document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
                             clear_all_cells();
                             disable_all_cells();   
