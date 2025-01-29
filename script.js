@@ -19,7 +19,6 @@ function Player (name, symbol){
 
 function play (Symbol, coord) { 
     console.log(coord);
-    
     board[row_column[0]][row_column[1]] = Symbol;
     format_array(board);         
 }
@@ -84,14 +83,32 @@ const player1 = new Player("player1", "X");
 const player2 = new Player("player2", "O");
 
 const inp = document.querySelectorAll("select.inp");
-function choose_and_select (){
+const start = document.getElementById("start");
+const restart = document.getElementById("restart");
+
+
+//make start_game button
+start.addEventListener("click", choose_and_select);
+console.log(start); 
+
+
+restart.addEventListener("click", restart_game);
+
+
+
+function enable_all_cells (){
     if (inp) {
         inp.forEach((bt) => {
             bt.removeAttribute("disabled");
         });
+}}
 
-}
-}
+function disable_all_cells (){
+    if (inp) {
+        inp.forEach((bt) => {
+            bt.setAttribute("disabled", "disabled");
+        });
+}}
 
 function clear_all_cells (){
     if (inp) {
@@ -100,17 +117,20 @@ function clear_all_cells (){
         });
 }}
 
-
-
-//make start_game button
-start.addEventListener("click", choose_and_select());
 //restart.addEventListener("click", replay_game());
 
 //by default all the select cells are deactivated until we start the game
-desable_all_cells();
+
+const switch_user = [];
+
+
+disable_all_cells ();
 
 function choose_and_select(){
+
+    console.log("i'm here");
     enable_all_cells();
+    console.log("also here");
     
     if (inp) {
         inp.forEach((bt) => {
@@ -118,32 +138,39 @@ function choose_and_select(){
                 bt.setAttribute("disabled", "disabled");
                 const symbol = event.target.value;
                 const coor = event.target.name;
+                let x = switch_user.slice(-1).pop();
+                if (x === symbol){
+                    console.log("change your symbol");
+                    bt.selectedIndex = -1;
+                }
                 bool = false;
                 board[coor[0]][coor[1]] = symbol;
                 bool = check_board_game(symbol);
-                format_array(board);
+                //format_array(board);
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
                         alert("player 1 with "+ symbol+ " wins ");
                         clear_all_cells();
-                        desable_all_cells();
-                        
+                        disable_all_cells();   
                     }
                     else {
                         alert("player 2 with "+ symbol+ " wins ");
                         clear_all_cells();
-                        desable_all_cells();
+                        disable_all_cells();
                         
                     }
                 }
+                switch_user.push(symbol);
+
+                console.log(switch_user);
             });
         });  
         
     }  
 }
 
-/*
-function replay_game(){
+
+function restart_game(){
 
     clear_all_cells();
     enable_all_cells();
@@ -153,6 +180,7 @@ function replay_game(){
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
                 bt.setAttribute("disabled", "disabled");
+                
                 const symbol = event.target.value;
                 const coor = event.target.name;
                 bool = false;
@@ -178,7 +206,6 @@ function replay_game(){
         
     }  
 }
-*/
 
 
 const selectElement1 = document.getElementById("choice1");
