@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:700|Inter:400');
+
+
+:root {
+  --text: #fbd5ef;
+  --background: #1d0313;
+  --primary: #f27ac5;
+  --secondary: #6c9e10;
+  --accent: #4bed44;
+}
 
 .main_container {
   display: flex;
@@ -8,7 +18,7 @@
     grid-template-columns: 120px 120px 120px;
     grid-template-rows: 120px 120px 120px;
     gap: 10px;
-    background-color: dodgerblue;
+    background-color: var(--primary );
     padding: 10px;
     width:fit-content;
     margin: auto;
@@ -26,11 +36,11 @@
     height: 100px;
     display: flex;
     font-size: 50px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Inter';    
     font-weight: bolder ;
     justify-content: center;
     align-items: center;
-    background: rgb(255, 225, 144);
+    /*background: rgb(255, 225, 144);*/
     margin-bottom: 10px;
   }
 
@@ -52,3 +62,39 @@
     display: flex;
     justify-content: space-around;
   }
+
+  input {
+    background-color: #870d58;
+  }
+
+  select {
+    background-color: #870d58;
+
+  }
+
+
+body {
+  font-family: 'Inter';
+  font-weight: 400;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+button {
+  font-family: 'Inter';
+  font-weight: 550;
+}
+
+#start {
+  background-color: var(--accent);
+
+}
+
+#restart {
+  background-color: var(--secondary);
+}
+
+html {font-size: 100%;} /* 16px */
+
+button {font-size: 1.333rem; /* 21.28px */}
+

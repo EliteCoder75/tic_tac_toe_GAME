@@ -193,7 +193,7 @@ function clear_all_cells (){
 
 
 const switch_user = ["e"];
-// by default all the cells are disabled 
+// by default all the cells are disabled
 disable_all_cells ();
 
 function choose_and_select()
