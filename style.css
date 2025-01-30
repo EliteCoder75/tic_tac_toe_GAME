@@ -69,9 +69,13 @@
 
   select {
     background-color: #870d58;
-
   }
 
+  .player1_choice, .player2_choice {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
 body {
   font-family: 'Inter';
