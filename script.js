@@ -4,14 +4,12 @@ const GameBoard =
 
 var board = GameBoard();    
 
-
 // print formated array
 function format_array (m) {
     console.log(JSON.stringify(m).replace(/(\[\[)(.*)(\]\])/g,'[\n  [$2]\n]').replace(/],/g,'],\n  '));
 }
 
-format_array(board);    
-
+//difine player constructur to initialize name and symbol
 function Player (name, symbol){
     this.name = name;
     this.symbol = symbol;
@@ -21,7 +19,6 @@ function Player (name, symbol){
     it will be either having a fixed row and incrementing number in columns -> eg : [0,1] [0,2] [0,3]
     or an incrementing row and a fixed number in columns
     or a fixed diagonal of the same symbols */
-
 function check_board_game (playerSymbol) {
 
     let bool = false;
@@ -77,12 +74,6 @@ const restart = document.getElementById("restart");
 const grid_container = document.querySelector(".grid_container");
 
 
-function check_same_name_or_symbol (s1, s2, n1, n2){
-    if (s1 == s2 || n1 == n2) {
-        return true;
-    }
-}
-
 ////// selection of the players name and choice
 const selectElement1 = document.getElementById("choice1");
 const playerName1 = document.getElementById("playerName1");
@@ -101,6 +92,7 @@ const message2 = document.querySelector(".message2");
 
 
 let check1 = false;
+
 confirm_crident1.addEventListener("click", () => {
     let check = true;
     console.log(selectElement2);
@@ -157,12 +149,11 @@ confirm_crident2.addEventListener("click", () => {
 });
 
 
-
 //make start_game button
 start.addEventListener("click", choose_and_select);
-console.log(start); 
 
 restart.addEventListener("click", restart_game);
+
 
 function enable_all_cells (){
     if (inp) {
@@ -185,16 +176,25 @@ function clear_all_cells (){
         });
 }}
 
-
+//declare empty array that push and pull last symbol played. it is used to compare the current and preivous played symbols (need to be different ) in order to check that the users are switched after every play
 const switch_user = ["e"];
 // by default all the cells are disabled
 disable_all_cells ();
 
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * This function will be called when the start button is clicked. 
+ * It initializes the player objects and enables all the grid cells.
+ * It also sets an event listener to each cell in order to check if the user has changed the value.
+ * If the user has changed the value, it will be stored in the board and the game status will be checked.
+ * If the game status has been changed, the result will be displayed and the game will be finished.
+ * If the game status has not been changed, the next user will be switched.
+ */
+/******  8c511694-889a-48c2-8e94-4fa7fd917918  *******/
 function choose_and_select()
 {   
     const player1 = new Player(playerName1.value, selectElement1.value);
     const player2 = new Player(playerName2.value, selectElement2.value);
-
     console.log(player1.name);
     console.log(player1.symbol);
 
@@ -248,16 +248,30 @@ function choose_and_select()
 }
 
 
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Resets the game state after the game has finished.
+ * 
+ * - Empties the result field.
+ * - Resets the switch_user array to its initial state.
+ * - Clears all grid cells.
+ * - Enables all grid cells.
+ * - Re-adds the event listener to each grid cell to check if the user has changed the value.
+ * - If the user has changed the value, it will be stored in the board and the game status will be checked.
+ * - If the game status has been changed, the result will be displayed and the game will be finished.
+ * - If the game status has not been changed, the next user will be switched.
+ */
+/******  a1a858a5-9011-4125-894d-e764f3eb2c7b  *******/
 function restart_game(){
     if (check1 == true && check2 == true){
-    
+    //make result field empty when restart the game     
+    document.getElementById("result").textContent ="";
     switch_user = ["e"];
     clear_all_cells();
     enable_all_cells();    
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
-                document.getElementById("result").textContent ="";
 
                 document.getElementById("turn").textContent ="";
                 grid_container.style.backgroundColor = '#fbd5ef';
