@@ -46,8 +46,7 @@
 
   #input {
     height: 80px;
-    width: 120px;
-    background-color: #f1f1f1;
+    width: 120px; 
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
@@ -63,42 +62,66 @@
     justify-content: space-around;
   }
 
-  input {
+  input, input::placeholder, select{
+    font-family: 'Inter';
     background-color: #870d58;
+    color: var(--text);
+    border-radius: 10px;
   }
 
-  select {
-    background-color: #870d58;
-  }
 
   .player1_choice, .player2_choice {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin: 30px;
   }
 
-body {
-  font-family: 'Inter';
-  font-weight: 400;
-  background-color: var(--background);
-  color: var(--text);
-}
+  button.confirm_crident1,  button.confirm_crident2{
+    background-color: var(--primary);
+    border-color: #09ff00;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 10px;
+  }
+  
+  body {
+    font-family: 'Inter';
+    font-weight: 400;
+    background-color: var(--background);
+    color: var(--text);
+  }
 
-button {
-  font-family: 'Inter';
-  font-weight: 550;
-}
+  button {
+    font-family: 'Inter';
+    font-weight: 550;
+  }
 
-#start {
-  background-color: var(--accent);
+  #start {
+    background-color: var(--accent);  
+    border-color: var(--text);
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 700  ;
+    border-radius: 100px;
+    padding: 20px;  
+    margin: 60px;
 
-}
+  }
 
-#restart {
-  background-color: var(--secondary);
-}
+  #restart {
+    background-color: var(--secondary );  
+    border-color: var(--text);
+    font-family: Inter;
+    font-size: 40px;
+    font-weight: 700 ;
+    border-radius: 100px;
+    padding: 20px;
+    margin: 60px;
+  }
 
-html {font-size: 100%;} /* 16px */
+  html {font-size: 100%;} /* 16px */
 
-button {font-size: 1.333rem; /* 21.28px */}
+  button {font-size: 1.333rem; /* 21.28px */}
 
