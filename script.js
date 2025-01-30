@@ -201,20 +201,17 @@ function choose_and_select()
     const player1 = new Player(playerName1.value, selectElement1.value);
     const player2 = new Player(playerName2.value, selectElement2.value);
 
-    console.log("hhahahahahahahjjjjjjiiiii");
     console.log(player1.name);
     console.log(player1.symbol);
 
     if (check1 == true && check2 == true){
         
-        console.log("i'm here");
-        enable_all_cells();
-        console.log("also here");
-        
+        enable_all_cells();        
         if (inp) {
             inp.forEach((bt) => {
                 bt.addEventListener("change", (event) => {
-                    grid_container.style.backgroundColor = 'dodgerblue';
+                    document.getElementById("turn").textContent ="";
+                    grid_container.style.backgroundColor = '#fbd5ef';
                     bt.setAttribute("disabled", "disabled");
                     const symbol = event.target.value;
                     const coor = event.target.name;
@@ -224,7 +221,7 @@ function choose_and_select()
                         console.log("It's not your turn");
                         bt.removeAttribute("disabled");
                         bt.selectedIndex = -1;
-                        document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                        document.getElementById("turn").textContent = "It's not your turn yet !! " + symbol; 
                         grid_container.style.backgroundColor = 'red';
                         return;
                     }
@@ -265,7 +262,8 @@ function restart_game(){
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
-                grid_container.style.backgroundColor = 'dodgerblue';
+                document.getElementById("turn").textContent ="";
+                grid_container.style.backgroundColor = '#fbd5ef';
                 bt.setAttribute("disabled", "disabled");
                 const symbol = event.target.value;
                 const coor = event.target.name;
@@ -275,7 +273,7 @@ function restart_game(){
                     console.log("It's not your turn");
                     bt.removeAttribute("disabled");
                     bt.selectedIndex = -1;
-                    document.getElementById("turn").textContent = "It's not your turn" + symbol; 
+                    document.getElementById("turn").textContent = "It's not your turn yet !! " + symbol; 
                     grid_container.style.backgroundColor = 'red';
                     return;
                 }
