@@ -37,13 +37,15 @@
     height: 100px;
     display: flex;
     font-size: 50px;
-    font-family: 'Inter';    
+    font-family: 'Inter';   
+    font-style: italic; 
     font-weight: bold ;
     justify-content: center;
     align-items: center;
     /*background: rgb(255, 225, 144);*/
     padding: 30px;
   }
+
 
   #input {
     height: 80px;

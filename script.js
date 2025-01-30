@@ -17,12 +17,6 @@ function Player (name, symbol){
     this.symbol = symbol;
 }
 
-function play (Symbol, coord) { 
-    console.log(coord);
-    board[row_column[0]][row_column[1]] = Symbol;
-    format_array(board);         
-}
-
 /* the winner needs to satisfy one of the three conditions one complete column or row or diagonal of same symbols
     it will be either having a fixed row and incrementing number in columns -> eg : [0,1] [0,2] [0,3]
     or an incrementing row and a fixed number in columns
@@ -308,51 +302,6 @@ function restart_game(){
         
     }  }
 }
-
-
-
-
-
-
-
-
-
-/*code that I may need 
-const selectElement1 = document.getElementById("choice1");
-const playerName1 = document.getElementById("playerName1");
-const confirm_crident1 = document.querySelector(".confirm_crident1");
-
-const result1 = document.querySelector(".result1");
-
-confirm_crident1.addEventListener("click", () => {
-    if ( Name1.value == Name2.value || symbolchoice1.value == symbolchoice2.value ){
-        console.log("change Name or Symbol of one of the two players");    
-    }
-    console.log(Name2.value );
-    console.log(symbolchoice2.value);
-    var player1 = new Player(Name1, symbolchoice1);
-    
-    result1.textContent = `${player1.Name1} you're choice is ${player1.symbolchoice1}`;
-});
-
-/*const selectElement2 = document.getElementById("choice2");
-const playerName2 = document.getElementById("playerName2");
-const confirm_crident2 = document.querySelector(".confirm_crident2");
-
-const result2 = document.querySelector(".result2");
-
-confirm_crident2.addEventListener("click", (event) => {
-
-    if ( Name1.value == Name2.value || symbolchoice1.value == symbolchoice2.value ){
-        console.log("change Name or Symbol of one of the two players");    
-    }
-    console.log(Name2.value );
-    console.log(symbolchoice2.value);
-    var player2 = new Player(Name2, symbolchoice2);
-    
-    result1.textContent = `${player2.Name2} you're choice is ${player2.symbolchoice2}`;
-});*/
-
 
 
 
