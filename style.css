@@ -126,11 +126,16 @@
 
   button {font-size: 1.333rem; /* 21.28px */}
 
-   #turn {
+   #turn, #result {
     margin-left: 710px;
     margin-top: 20px;
     color: #09ff00;
     font-size: 40px;
     font-weight: 600;
+   }
+
+   #result {
+    margin-left: 610px;
+
    }
 

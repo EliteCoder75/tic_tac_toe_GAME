@@ -232,13 +232,13 @@ function choose_and_select()
                     if (bool == true ) {
                         if ( player1.symbol == symbol){
                             alert(player1.name + " with "+ symbol+ " wins ");
-                            document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
+                            document.getElementById("result").textContent = "the player "+player1.name + " with "+ symbol+ " wins "; 
                             clear_all_cells();
                             disable_all_cells();   
                         }
                         else {
                             alert(player2.name + " with "+ symbol+ " wins ");
-                            document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
+                            document.getElementById("result").textContent = "the player "+player2.name + " with "+ symbol+ " wins "; 
                             clear_all_cells();
                             disable_all_cells(); 
                         }
@@ -256,12 +256,15 @@ function choose_and_select()
 
 function restart_game(){
     if (check1 == true && check2 == true){
+    
     switch_user = ["e"];
     clear_all_cells();
     enable_all_cells();    
     if (inp) {
         inp.forEach((bt) => {
             bt.addEventListener("change", (event) => {
+                document.getElementById("result").textContent ="";
+
                 document.getElementById("turn").textContent ="";
                 grid_container.style.backgroundColor = '#fbd5ef';
                 bt.setAttribute("disabled", "disabled");
@@ -285,13 +288,13 @@ function restart_game(){
                 if (bool == true ) {
                     if ( player1.symbol == symbol){
                         alert(player1.name + "with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = player1.name + "with "+ symbol+ " wins "; 
+                        document.getElementById("result").textContent = "the player "+player1.name + " with "+ symbol+ " wins "; 
                         clear_all_cells();
                         disable_all_cells();   
                     }
                     else {
                         alert(player2.name + " with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = player2.name + "with "+ symbol+ " wins "; 
+                        document.getElementById("result").textContent = "the player "+player2.name + " with "+ symbol+ " wins "; 
                         clear_all_cells();
                         disable_all_cells(); 
                     }
