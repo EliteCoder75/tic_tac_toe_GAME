@@ -1,5 +1,5 @@
 
-# the Tic-Tac-Toe game 🎮
+# The Tic-Tac-Toe game 🎮
 
 It's a game that consists of two players whom they will compete to fill a line with there respective symbols (X or O) in a 3*3 grid.
 The first player who succed to fill the line with his symol wins.
