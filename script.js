@@ -121,7 +121,6 @@ confirm_crident1.addEventListener("click", () => {
 
 
 let check2 = false;
-
 confirm_crident2.addEventListener("click", () => {
     
     //console.log(selectElement2);
@@ -149,10 +148,8 @@ confirm_crident2.addEventListener("click", () => {
 });
 
 
-//make start_game button
-start.addEventListener("click", choose_and_select);
 
-restart.addEventListener("click", restart_game);
+
 
 
 function enable_all_cells (){
@@ -176,70 +173,122 @@ function clear_all_cells (){
         });
 }}
 
-//declare empty array that push and pull last symbol played. it is used to compare the current and preivous played symbols (need to be different ) in order to check that the users are switched after every play
-const switch_user = ["e"];
+function variable_generator(){
+    return "random_var"+Math.random() ;
+}
+
+const empty_board = function check_board_empty (){
+    let bool = true;
+    for (let i=0; i<3; i++){
+        for (let j=0; i<3; i++){
+            if (board[0][1]!="e") {
+                bool = false;
+                console.log (bool);
+                return bool; 
+            }
+        }
+    }
+}
+
+const replay = function restart_game(){
+    
+    clear_all_cells();
+    disable_all_cells();
+    start.removeAttribute("disabled"); 
+    document.getElementById("result").textContent = ""; 
+    
+}
+
+
+//make start_game button
+start.addEventListener("click", choose_and_select);
+
+restart.addEventListener("click", replay);
+
+//var last_sym = "e";
 // by default all the cells are disabled
 disable_all_cells ();
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * This function will be called when the start button is clicked. 
- * It initializes the player objects and enables all the grid cells.
- * It also sets an event listener to each cell in order to check if the user has changed the value.
- * If the user has changed the value, it will be stored in the board and the game status will be checked.
- * If the game status has been changed, the result will be displayed and the game will be finished.
- * If the game status has not been changed, the next user will be switched.
- */
-/******  8c511694-889a-48c2-8e94-4fa7fd917918  *******/
+
+
+
 function choose_and_select()
 {   
-    const player1 = new Player(playerName1.value, selectElement1.value);
-    const player2 = new Player(playerName2.value, selectElement2.value);
-    console.log(player1.name);
-    console.log(player1.symbol);
-
+    clear_all_cells();
+    //empty_board();
+    var player1 = new Player(playerName1.value, selectElement1.value);
+    var player2 = new Player(playerName2.value, selectElement2.value);
     if (check1 == true && check2 == true){
-        
+        start.setAttribute("disabled", "disabled");
+        let switch_user = ["e"];
+        console.log(switch_user);
+
         enable_all_cells();        
         if (inp) {
             inp.forEach((bt) => {
                 bt.addEventListener("change", (event) => {
+                    console.log("start");
+                    console.log(switch_user);
+                    let y = empty_board();
+                    if (y) {
+                        switch_user = ["e"];
+                        board = GameBoard();
+                    }
+                    //check if selected and it is empty
                     document.getElementById("turn").textContent ="";
                     grid_container.style.backgroundColor = '#fbd5ef';
-                    bt.setAttribute("disabled", "disabled");
-                    const symbol = event.target.value;
-                    const coor = event.target.name;
+                    let symbol = event.target.value;
+                    let coor = event.target.name;
                     let lastSymbol = switch_user[switch_user.length - 1];
-
-                    if (symbol === lastSymbol) {
-                        console.log("It's not your turn");
+                    
+                    if (symbol === lastSymbol) {  
+                        console.log(lastSymbol);
+                        console.log("symbol "+symbol);
+                        console.log("It's not your turn" + symbol);
                         bt.removeAttribute("disabled");
                         bt.selectedIndex = -1;
                         document.getElementById("turn").textContent = "It's not your turn yet !! " + symbol; 
                         grid_container.style.backgroundColor = 'red';
+                        var skipRest = true;
                         return;
                     }
-                    
-                    bool = false;
-                    board[coor[0]][coor[1]] = symbol;
-                    bool = check_board_game(symbol);
-                    if (bool == true ) {
-                        if ( player1.symbol == symbol){
-                            alert(player1.name + " with "+ symbol+ " wins ");
-                            document.getElementById("result").textContent = "the player "+player1.name + " with "+ symbol+ " wins "; 
-                            clear_all_cells();
-                            disable_all_cells();   
+
+                    if (!skipRest) {
+
+                        let bool = false;
+                        board[coor[0]][coor[1]] = symbol;
+                        bool = check_board_game(symbol);
+                        if (bool == true ) {
+                            if ( player1.symbol == symbol){
+                                alert(player1.name + " with "+ symbol+ " wins ");
+                                document.getElementById("result").textContent = "the player "+player1.name + " with "+ symbol+ " wins "; 
+                                clear_all_cells();
+                                disable_all_cells();
+                                start.removeAttribute("disabled");
+                                board = GameBoard();
+                                //last_sym = 'e';
+                                switch_user = ["e"];
+                                replay();
+                            }
+                            else {
+                                alert(player2.name + " with "+ symbol+ " wins ");
+                                document.getElementById("result").textContent = "the player "+player2.name + " with "+ symbol+ " wins "; 
+                                clear_all_cells();
+                                disable_all_cells();
+                                start.removeAttribute("disabled");
+                                board = GameBoard();
+                                switch_user = ["e"];
+                                replay();
+                            }
+                        } else {
+                            if (symbol != ""){switch_user.push(symbol);}
+                            
+                            console.log("end");
+                            console.log(switch_user);
+                            console.log("inside");
                         }
-                        else {
-                            alert(player2.name + " with "+ symbol+ " wins ");
-                            document.getElementById("result").textContent = "the player "+player2.name + " with "+ symbol+ " wins "; 
-                            clear_all_cells();
-                            disable_all_cells(); 
+                        
                         }
-                    }
-                
-                    switch_user.push(symbol);
-                    console.log(switch_user);
                 });
             });  
             
@@ -248,74 +297,6 @@ function choose_and_select()
 }
 
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * Resets the game state after the game has finished.
- * 
- * - Empties the result field.
- * - Resets the switch_user array to its initial state.
- * - Clears all grid cells.
- * - Enables all grid cells.
- * - Re-adds the event listener to each grid cell to check if the user has changed the value.
- * - If the user has changed the value, it will be stored in the board and the game status will be checked.
- * - If the game status has been changed, the result will be displayed and the game will be finished.
- * - If the game status has not been changed, the next user will be switched.
- */
-/******  a1a858a5-9011-4125-894d-e764f3eb2c7b  *******/
-function restart_game(){
-    if (check1 == true && check2 == true){
-    //make result field empty when restart the game     
-    document.getElementById("result").textContent ="";
-    switch_user = ["e"];
-    clear_all_cells();
-    enable_all_cells();    
-    if (inp) {
-        inp.forEach((bt) => {
-            bt.addEventListener("change", (event) => {
-
-                document.getElementById("turn").textContent ="";
-                grid_container.style.backgroundColor = '#fbd5ef';
-                bt.setAttribute("disabled", "disabled");
-                const symbol = event.target.value;
-                const coor = event.target.name;
-                let lastSymbol = switch_user[switch_user.length - 1];
-
-                if (symbol === lastSymbol) {
-                    console.log("It's not your turn");
-                    bt.removeAttribute("disabled");
-                    bt.selectedIndex = -1;
-                    document.getElementById("turn").textContent = "It's not your turn yet !! " + symbol; 
-                    grid_container.style.backgroundColor = 'red';
-                    return;
-                }
-                
-                bool = false;
-                board[coor[0]][coor[1]] = symbol;
-                bool = check_board_game(symbol);
-                //format_array(board);
-                if (bool == true ) {
-                    if ( player1.symbol == symbol){
-                        alert(player1.name + "with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = "the player "+player1.name + " with "+ symbol+ " wins "; 
-                        clear_all_cells();
-                        disable_all_cells();   
-                    }
-                    else {
-                        alert(player2.name + " with "+ symbol+ " wins ");
-                        document.getElementById("result").textContent = "the player "+player2.name + " with "+ symbol+ " wins "; 
-                        clear_all_cells();
-                        disable_all_cells(); 
-                    }
-                }
-            
-                switch_user.push(symbol);
-
-                console.log(switch_user);
-            });
-        });  
-        
-    }  }
-}
 
 
 
