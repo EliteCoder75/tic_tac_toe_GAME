@@ -4,7 +4,7 @@
 It's a game that consists of two players whom they will compete to fill a line with there respective symbols (X or O) in a 3*3 grid.
 The first player who succed to fill the line with his symol wins.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://aleksey-kerkin.github.io/odin-tic-tac-toe/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://elitecoder75.github.io/tic_tac_toe_GAME/)
 
 
 ![Game Screenshot](./assets/Screenshot%20from%202025-01-31%2011-05-06.png)
@@ -18,9 +18,6 @@ The first player who succed to fill the line with his symol wins.
 * alternate between the players until one of them will fill one line, column or diagonal line of cells with its symbols (XXX / OOO)
 * the winner will be displayed
 * if the palyers want to play again they click on the restart button
-
-
-
 
 
 ## Features ✨
@@ -47,5 +44,5 @@ This project was made possible by:
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/aleksey-kerkin">Bachir Gueddouda</a></sub>
+  <sub>Built with ❤️ by <a href="https://github.com/EliteCoder75">Bachir Gueddouda</a></sub>
 </div>
